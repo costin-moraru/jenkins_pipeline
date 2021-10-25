@@ -11,8 +11,11 @@ pipeline {
             steps {
                 git branch: 'main', url: 'https://github.com/spring-projects/spring-petclinic.git'
 
+                sh "mvn verify"
                 // To run Maven on a Windows agent, use
                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
+                
+                sh "echo $JFROG_HOME"
             }
 
             post {
